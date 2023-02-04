@@ -1,10 +1,16 @@
+<script setup lang="ts">
+import Navbar from '@/components/Layout/Navbar.vue'
+</script>
+
 <template>
-  <RouterLink to="/" class="button">Notes</RouterLink> | 
-  <RouterLink to="/stats" class="button">Stats</RouterLink>
+  <Navbar />
+  <!-- <RouterLink to="/" class="button">Notes</RouterLink> | 
+  <RouterLink to="/stats" class="button">Stats</RouterLink> -->
 <RouterView/>
 </template>
 
 <style>
 @import 'bulma/css/bulma.min.css';
+
 
 </style>
