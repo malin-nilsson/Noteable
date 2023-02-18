@@ -1,22 +1,15 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import Note from '@/components/Notes/Note.vue'
+import { useStoreNotes } from '@/stores/storeNotes'
 
+const storedNotes = useStoreNotes()
 /* 
 notes
 */
 
 const newNote = ref('')
-const notes = ref([
-  {
-    id: 'id1',
-    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.'
-  },
-  {
-    id: 'id2',
-    content: 'This is a short note - woho'
-  },
-])
+
 const newNoteRef = ref<HTMLTextAreaElement>()
 
 const addNote = () => {
@@ -28,7 +21,7 @@ const addNote = () => {
     content: newNote.value
   }
 
-  notes.value.unshift(note)
+  storedNotes.notes.unshift(note)
 
   newNote.value = ''
 
@@ -39,7 +32,7 @@ if (newNoteRef.value) newNoteRef.value.focus()
 delete note
 */
 const deleteNote = (id: string) => {
-notes.value = notes.value.filter(note => { return note.id !== id })
+  storedNotes.notes = storedNotes.notes.filter(note => { return note.id !== id })
 }
 </script>
 
@@ -70,7 +63,7 @@ notes.value = notes.value.filter(note => { return note.id !== id })
 </div>
 </div>
 <Note 
-v-for="note in notes"
+v-for="note in storedNotes.notes"
 :key="note.id"
 :note="note"
 @handleDelete="deleteNote"/>
