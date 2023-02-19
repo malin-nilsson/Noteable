@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { useStoreNotes } from '@/stores/storeNotes'
+import { RouterLink } from 'vue-router';
 
 const storedNotes = useStoreNotes()
 
@@ -39,8 +40,11 @@ const characterLength = computed(() => {
     </div>
   </div>
   <footer class="card-footer">
-    <a href="#" class="card-footer-item">Edit</a>
-    <a href="#" 
+    <RouterLink :to="`/editNote/${note.id}`"
+    class="card-footer-item">Edit</RouterLink>
+    
+    <a 
+    href="#" 
     @click.prevent="storedNotes.deleteNote(note.id)"
     class="card-footer-item">Delete</a>
   </footer>

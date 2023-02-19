@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import Note from '@/components/Notes/Note.vue'
 import { useStoreNotes } from '@/stores/storeNotes'
+import AddEditNote from '@/components/Notes/AddEditNote.vue'
 
 const storedNotes = useStoreNotes()
 /* 
@@ -9,45 +10,29 @@ notes
 */
 
 const newNote = ref('')
-
-const newNoteRef = ref<HTMLTextAreaElement>()
+const addEditNoteRef = ref<any>()
 
 const addNote = () => {
   storedNotes.addNote(newNote.value)
-
   newNote.value = ''
-
-if (newNoteRef.value) newNoteRef.value.focus()
+  addEditNoteRef.value?.focusTextArea()
 }
 
 </script>
 
 <template>
-
- 
 <div class="notes">
-  <div class="card has-background-link-light p-4 mb-5"> 
-    <div class="field">
-  <div class="control">
-    <textarea 
-    v-model="newNote"
-    class="textarea" 
-    placeholder="Add a new note"
-    ref="newNoteRef"></textarea>
-  </div>
-</div>
-
-<div class="field is-grouped is-grouped-right">
-  <div class="control">
+<AddEditNote
+v-model="newNote"
+ref="addEditNoteRef">
+  <template #buttons>
     <button 
     @click="addNote"
-    :disabled="!newNote"
     class="button is-link has-background-link-dark">
       Add New Note
     </button>
-  </div>
-</div>
-</div>
+  </template>
+</AddEditNote>
 <Note 
 v-for="note in storedNotes.notes"
 :key="note.id"
