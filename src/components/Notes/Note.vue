@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { computed } from 'vue';
+import { useStoreNotes } from '@/stores/storeNotes'
+
+const storedNotes = useStoreNotes()
 
 /* 
 props
@@ -13,12 +16,6 @@ const props = defineProps({
 })
 
 /*
-emits 
-*/
-const emit = defineEmits(['handleDelete'])
-
-
-/*
 character length
 */
 
@@ -27,14 +24,6 @@ const characterLength = computed(() => {
     let description = length > 1 ? 'characters': 'character'
     return `${length} ${description}`
 })
-
-/*
-handle delete
-*/
-const handleDeleteClicked = () => {
-  emit('handleDelete', props.note.id)
-}
-
 
 </script>
 
@@ -52,7 +41,7 @@ const handleDeleteClicked = () => {
   <footer class="card-footer">
     <a href="#" class="card-footer-item">Edit</a>
     <a href="#" 
-    @click.prevent="handleDeleteClicked"
+    @click.prevent="storedNotes.deleteNote(note.id)"
     class="card-footer-item">Delete</a>
   </footer>
 </div>

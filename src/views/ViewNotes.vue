@@ -13,27 +13,13 @@ const newNote = ref('')
 const newNoteRef = ref<HTMLTextAreaElement>()
 
 const addNote = () => {
-  let currentDate = new Date().getTime()
-  let id = currentDate.toString()
-
-  let note = {
-    id: id,
-    content: newNote.value
-  }
-
-  storedNotes.notes.unshift(note)
+  storedNotes.addNote(newNote.value)
 
   newNote.value = ''
 
 if (newNoteRef.value) newNoteRef.value.focus()
 }
 
-/*
-delete note
-*/
-const deleteNote = (id: string) => {
-  storedNotes.notes = storedNotes.notes.filter(note => { return note.id !== id })
-}
 </script>
 
 <template>
@@ -65,7 +51,6 @@ const deleteNote = (id: string) => {
 <Note 
 v-for="note in storedNotes.notes"
 :key="note.id"
-:note="note"
-@handleDelete="deleteNote"/>
+:note="note"/>
 </div>
 </template>
