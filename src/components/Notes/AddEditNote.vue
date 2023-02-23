@@ -8,6 +8,16 @@ const props = defineProps({
     modelValue: {
         type: String,
         required: true
+    },
+    bgColor: {
+      type: String,
+    },
+    placeholder: {
+      type: String,
+      default: 'Type something...'
+    },
+    label: {
+      type: String
     }
 })
 
@@ -31,15 +41,20 @@ defineExpose({
 </script>
 
 <template>
-      <div class="card has-background-link-light p-4 mb-5"> 
-    <div class="field">
-  <div class="control">
+      <div 
+      :class="`has-background-${props.bgColor}`"
+      class="card has-background-link-light p-4 mb-5"> 
+   <label 
+   v-if="props.label"
+   class="has-text-black">{{ props.label  }}</label>
+      <div class="field">
+    <div class="control">
     <textarea 
     v-text="modelValue" 
     @input="emit('update:modelValue', ($event.target as HTMLTextAreaElement).value)"
     class="textarea"
-    placeholder="Add a new note"
     ref="textareaRef"
+    :placeholder="props.placeholder"
     maxlength="100"></textarea>
   </div>
 </div>

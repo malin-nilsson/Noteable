@@ -24,7 +24,9 @@ const addNote = () => {
 <div class="notes">
 <AddEditNote
 v-model="newNote"
-ref="addEditNoteRef">
+ref="addEditNoteRef"
+placeholder="Add a new note..."
+label="Add note">
   <template #buttons>
     <button 
     @click="addNote"
