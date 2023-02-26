@@ -9,7 +9,7 @@ const noteContent = ref("")
 const route = useRoute()
 
 console.log(route.params.id)
-noteContent.value = storeNotes.getNoteContent
+noteContent.value = storeNotes.getNoteContent(route.params.id as string)
 </script>
 
 <template>

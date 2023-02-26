@@ -8,7 +8,6 @@ const storedNotes = useStoreNotes()
 /* 
 props
 */
-
 const props = defineProps({
     note: {
         type: Object,
