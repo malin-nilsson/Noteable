@@ -34,6 +34,13 @@ export const useStoreNotes = defineStore("storeNotes", {
         return note.id !== id;
       });
     },
+    updateNote(id: string, content: string) {
+      let index = this.notes.findIndex((note) => {
+        return note.id === id;
+      });
+
+      this.notes[index].content = content;
+    },
   },
   getters: {
     getNoteContent: (state) => {

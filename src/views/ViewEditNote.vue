@@ -2,14 +2,19 @@
 import AddEditNote from '@/components/Notes/AddEditNote.vue';
 import { useStoreNotes } from '@/stores/storeNotes';
 import { ref } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
 const storeNotes = useStoreNotes()
 const noteContent = ref("")
 const route = useRoute()
+const router = useRouter()
 
-console.log(route.params.id)
 noteContent.value = storeNotes.getNoteContent(route.params.id as string)
+
+const handleSaveClicked = () => {
+  storeNotes.updateNote(route.params.id as string, noteContent.value)
+  router.push("/")
+}
 </script>
 
 <template>
@@ -28,6 +33,7 @@ noteContent.value = storeNotes.getNoteContent(route.params.id as string)
       Cancel
     </button>
     <button 
+    @click="handleSaveClicked"
     class="button is-link has-background-link-dark"
     :disabled="!noteContent">
       Save Note
