@@ -50,5 +50,16 @@ export const useStoreNotes = defineStore("storeNotes", {
         })[0].content;
       };
     },
+    totalNotesCount: (state) => {
+      return state.notes.length;
+    },
+    totalCharacters: (state) => {
+      let count = 0;
+
+      state.notes.forEach((note) => {
+        count += note.content.length;
+      });
+      return count;
+    },
   },
 });
