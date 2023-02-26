@@ -30,7 +30,8 @@ label="Add note">
   <template #buttons>
     <button 
     @click="addNote"
-    class="button is-link has-background-link-dark">
+    class="button is-link has-background-link-dark"
+    :disabled="!newNote">
       Add New Note
     </button>
   </template>
