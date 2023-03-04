@@ -54,6 +54,7 @@ const modals = reactive({
   </footer>
   <ModalDeleteNote
   v-if="modals.deleteNote"
-  v-model="modals.deleteNote" />
+  v-model="modals.deleteNote" 
+  :noteId="props.note.id"/>
 </div>
 </template>
