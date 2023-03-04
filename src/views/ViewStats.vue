@@ -4,12 +4,10 @@ import { vAutoFocus } from '@/directives/vAutoFocus'
 import { useWatchCharacters } from '@/use/useWatchCharacters'
 import { ref } from 'vue';
 
-
 const storeNotes = useStoreNotes()
-
 const loveNoteable = ref("")
-useWatchCharacters(loveNoteable.value)
-console.log("loveNoteable: ", loveNoteable.value)
+useWatchCharacters(loveNoteable, 50)
+
 </script>
 
 <template>
@@ -36,7 +34,7 @@ console.log("loveNoteable: ", loveNoteable.value)
     class="input" 
     type="text" 
     placeholder="Do you love Noteable?"
-    v-mode="loveNoteable"
-    v-auto-focus>
+    v-model="loveNoteable"
+    v-autofocus>
 </div>
 </template>

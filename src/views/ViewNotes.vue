@@ -14,7 +14,7 @@ const addNote = () => {
   newNote.value = ''
   addEditNoteRef.value?.focusTextArea()
 }
-useWatchCharacters(newNote)
+useWatchCharacters(newNote, 250)
 
 
 </script>
