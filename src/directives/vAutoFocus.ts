@@ -1,5 +1,5 @@
 export const vAutoFocus = {
-  mounted: (el: HTMLTextAreaElement) => {
+  mounted: (el: HTMLElement) => {
     el.focus();
   },
 };

@@ -58,7 +58,7 @@ defineExpose({
     ref="textareaRef"
     :placeholder="props.placeholder"
     maxlength="100"
-    v-autofocus
+    v-auto-focus
     ></textarea>
   </div>
 </div>
