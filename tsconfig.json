@@ -9,6 +9,7 @@
   },
   "noImplicitAny": false,
   "allowJs": true,
+  "typescript.format.semicolons": "remove",
 
   "references": [
     {

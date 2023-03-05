@@ -1,40 +1,40 @@
 <script setup lang="ts">
-import { useStoreNotes } from '@/stores/storeNotes';
+import { useStoreNotes } from '@/stores/storeNotes'
 import { vAutoFocus } from '@/directives/vAutoFocus'
 import { useWatchCharacters } from '@/use/useWatchCharacters'
-import { ref } from 'vue';
+import { ref } from 'vue'
 
 const storeNotes = useStoreNotes()
-const loveNoteable = ref("")
+const loveNoteable = ref('')
 useWatchCharacters(loveNoteable, 50)
-
 </script>
 
 <template>
-<div class="stats">
+  <div class="stats">
     <table class="table is-fullwidth">
-        <thead>
-            <tr>
-<th>Stat</th>
-<th>Value</th>
+      <thead>
+        <tr>
+          <th>Stat</th>
+          <th>Value</th>
         </tr>
-    </thead>
-        <tbody>
-            <tr>
-                <td>Number of Notes</td>
-                <td>{{storeNotes.totalNotesCount}}</td>
-            </tr>
-            <tr>
-                <td>Number of Characters (of all notes)</td>
-                <td>{{storeNotes.totalCharacters}}</td>
-            </tr>
-        </tbody>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Number of Notes</td>
+          <td>{{ storeNotes.totalNotesCount }}</td>
+        </tr>
+        <tr>
+          <td>Number of Characters (of all notes)</td>
+          <td>{{ storeNotes.totalCharacters }}</td>
+        </tr>
+      </tbody>
     </table>
-    <input 
-    class="input" 
-    type="text" 
-    placeholder="Do you love Noteable?"
-    v-model="loveNoteable"
-    v-autofocus>
-</div>
+    <input
+      class="input"
+      type="text"
+      placeholder="Do you love Noteable?"
+      v-model="loveNoteable"
+      v-autofocus
+    />
+  </div>
 </template>

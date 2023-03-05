@@ -1,6 +1,6 @@
-import { defineStore } from "pinia";
+import { defineStore } from "pinia"
 // @ts-ignore
-import { db } from "@/firebase/config.js";
+import { db } from "@/firebase/config.js"
 import {
   collection,
   onSnapshot,
@@ -10,16 +10,16 @@ import {
   updateDoc,
   query,
   orderBy,
-} from "firebase/firestore";
+} from "firebase/firestore"
 
 interface INote {
-  id: string;
-  content: string;
+  id: string
+  content: string
+  date: string
 }
 
-const notesCollectionRef = collection(db, "notes");
-
-const notesCollectionQuery = query(notesCollectionRef, orderBy("date", "desc"));
+const notesCollectionRef = collection(db, "notes")
+const notesCollectionQuery = query(notesCollectionRef, orderBy("date", "desc"))
 
 export const useStoreNotes = defineStore("storeNotes", {
   state: () => {
@@ -30,54 +30,55 @@ export const useStoreNotes = defineStore("storeNotes", {
   actions: {
     async getNotes() {
       onSnapshot(notesCollectionQuery, (querySnapshot) => {
-        let notes = [] as INote[];
+        let notes = [] as INote[]
 
         querySnapshot.forEach((doc) => {
           let note: INote = {
             id: doc.id,
             content: doc.data().content,
-          };
-          notes.push(note);
-        });
-        this.notes = notes;
-      });
+            date: doc.data().date
+          }
+          notes.push(note)
+        })
+        this.notes = notes
+      })
     },
     async addNote(note: string) {
-      let currentDate = new Date().getTime();
-      let date = currentDate.toString();
+      let currentDate = new Date().getTime()
+      let date = currentDate.toString()
 
       await addDoc(notesCollectionRef, {
         content: note,
         date,
-      });
+      })
     },
     async deleteNote(id: string) {
-      await deleteDoc(doc(notesCollectionRef, id));
+      await deleteDoc(doc(notesCollectionRef, id))
     },
     async updateNote(id: string, content: string) {
       await updateDoc(doc(notesCollectionRef, id), {
         content,
-      });
+      })
     },
   },
   getters: {
     getNoteContent: (state) => {
       return (id: string) => {
         return state.notes.filter((note) => {
-          return note.id === id;
-        })[0].content;
-      };
+          return note.id === id
+        })[0].content
+      }
     },
     totalNotesCount: (state) => {
-      return state.notes.length;
+      return state.notes.length
     },
     totalCharacters: (state) => {
-      let count = 0;
+      let count = 0
 
       state.notes.forEach((note) => {
         count += note.content.length;
       });
-      return count;
+      return count
     },
   },
-});
+})
