@@ -5,7 +5,7 @@ import {
   collection,
   onSnapshot,
   doc,
-  setDoc,
+  addDoc,
   deleteDoc,
   updateDoc,
   query,
@@ -19,7 +19,7 @@ interface INote {
 
 const notesCollectionRef = collection(db, "notes");
 
-const notesCollectionQuery = query(notesCollectionRef, orderBy("id", "desc"));
+const notesCollectionQuery = query(notesCollectionRef, orderBy("date", "desc"));
 
 export const useStoreNotes = defineStore("storeNotes", {
   state: () => {
@@ -44,11 +44,11 @@ export const useStoreNotes = defineStore("storeNotes", {
     },
     async addNote(note: string) {
       let currentDate = new Date().getTime();
-      let id = currentDate.toString();
+      let date = currentDate.toString();
 
-      await setDoc(doc(notesCollectionRef, id), {
+      await addDoc(notesCollectionRef, {
         content: note,
-        id,
+        date,
       });
     },
     async deleteNote(id: string) {
