@@ -46,27 +46,27 @@ defineExpose({
       <div 
       :class="`has-background-${props.bgColor}`"
       class="card has-background-link-light p-4 mb-5"> 
-   <label 
-   v-if="props.label"
-   class="has-text-black">{{ props.label  }}</label>
-      <div class="field">
+    <label 
+    v-if="props.label"
+    class="has-text-black">{{ props.label  }}</label>
+        <div class="field">
+      <div class="control">
+      <textarea 
+      v-text="modelValue" 
+      @input="emit('update:modelValue', ($event.target as HTMLTextAreaElement).value)"
+      class="textarea"
+      ref="textareaRef"
+      :placeholder="props.placeholder"
+      maxlength="100"
+      v-autofocus
+      ></textarea>
+    </div>
+  </div>
+  
+  <div class="field is-grouped is-grouped-right">
     <div class="control">
-    <textarea 
-    v-text="modelValue" 
-    @input="emit('update:modelValue', ($event.target as HTMLTextAreaElement).value)"
-    class="textarea"
-    ref="textareaRef"
-    :placeholder="props.placeholder"
-    maxlength="100"
-    v-autofocus
-    ></textarea>
+      <slot name="buttons" />
+    </div>
   </div>
-</div>
- 
-<div class="field is-grouped is-grouped-right">
-  <div class="control">
-    <slot name="buttons" />
   </div>
-</div>
-</div>
-</template>
+  </template>
