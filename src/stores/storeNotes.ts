@@ -7,6 +7,7 @@ import {
   doc,
   setDoc,
   deleteDoc,
+  updateDoc,
 } from "firebase/firestore";
 
 interface INote {
@@ -52,12 +53,10 @@ export const useStoreNotes = defineStore("storeNotes", {
     async deleteNote(id: string) {
       await deleteDoc(doc(notesCollectionRef, id));
     },
-    updateNote(id: string, content: string) {
-      let index = this.notes.findIndex((note) => {
-        return note.id === id;
+    async updateNote(id: string, content: string) {
+      await updateDoc(doc(notesCollectionRef, id), {
+        content,
       });
-
-      this.notes[index].content = content;
     },
   },
   getters: {

@@ -15,17 +15,15 @@
     addEditNoteRef.value?.focusTextArea()
   }
   useWatchCharacters(newNote, 250)
-
-
   </script>
 
   <template>
-  <div class="notes">
-  <AddEditNote
-  v-model="newNote"
-  ref="addEditNoteRef"
-  placeholder="Add a new note..."
-  label="Add note">
+    <div class="notes">
+    <AddEditNote
+    v-model="newNote"
+    ref="addEditNoteRef"
+    placeholder="Add a new note..."
+    label="Add note">
     <template #buttons>
       <button 
       @click="addNote"
@@ -34,10 +32,10 @@
         Add New Note
       </button>
     </template>
-  </AddEditNote>
-  <Note 
-  v-for="note in storedNotes.notes"
-  :key="note.id"
-  :note="note"/>
-  </div>
+    </AddEditNote>
+    <Note 
+    v-for="note in storedNotes.notes"
+    :key="note.id"
+    :note="note"/>
+    </div>
   </template>
