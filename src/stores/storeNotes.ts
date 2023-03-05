@@ -8,6 +8,8 @@ import {
   setDoc,
   deleteDoc,
   updateDoc,
+  query,
+  orderBy,
 } from "firebase/firestore";
 
 interface INote {
@@ -17,6 +19,8 @@ interface INote {
 
 const notesCollectionRef = collection(db, "notes");
 
+const notesCollectionQuery = query(notesCollectionRef, orderBy("id", "desc"));
+
 export const useStoreNotes = defineStore("storeNotes", {
   state: () => {
     return {
@@ -25,8 +29,9 @@ export const useStoreNotes = defineStore("storeNotes", {
   },
   actions: {
     async getNotes() {
-      onSnapshot(notesCollectionRef, (querySnapshot) => {
+      onSnapshot(notesCollectionQuery, (querySnapshot) => {
         let notes = [] as INote[];
+
         querySnapshot.forEach((doc) => {
           let note: INote = {
             id: doc.id,
@@ -41,13 +46,9 @@ export const useStoreNotes = defineStore("storeNotes", {
       let currentDate = new Date().getTime();
       let id = currentDate.toString();
 
-      let newNote = {
+      await setDoc(doc(notesCollectionRef, id), {
+        content: note,
         id,
-        content: note,
-      };
-
-      await setDoc(doc(notesCollectionRef, newNote.id), {
-        content: note,
       });
     },
     async deleteNote(id: string) {
