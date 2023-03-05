@@ -5,12 +5,12 @@ import { useStoreNotes } from '@/stores/storeNotes'
 import AddEditNote from '@/components/Notes/AddEditNote.vue'
 import { useWatchCharacters } from '@/use/useWatchCharacters'
 
-const storedNotes = useStoreNotes()
+const storeNotes = useStoreNotes()
 const newNote = ref('')
 const addEditNoteRef = ref<any>()
 
 const addNote = () => {
-  storedNotes.addNote(newNote.value)
+  storeNotes.addNote(newNote.value)
   newNote.value = ''
   addEditNoteRef.value?.focusTextArea()
 }
@@ -35,10 +35,17 @@ useWatchCharacters(newNote, 250)
         </button>
       </template>
     </AddEditNote>
-    <Note
-      v-for="note in storedNotes.notes"
-      :key="note.id"
-      :note="note"
+    <progress
+      v-if="!storeNotes.notesLoaded"
+      class="progress is-large is-link"
+      max="100"
     />
+    <template v-else>
+      <Note
+        v-for="note in storeNotes.notes"
+        :key="note.id"
+        :note="note"
+      />
+    </template>
   </div>
 </template>

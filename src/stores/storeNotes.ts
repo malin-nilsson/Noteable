@@ -25,10 +25,12 @@ export const useStoreNotes = defineStore("storeNotes", {
   state: () => {
     return {
       notes: [] as INote[],
+      notesLoaded: false
     };
   },
   actions: {
     async getNotes() {
+      this.notesLoaded = false
       onSnapshot(notesCollectionQuery, (querySnapshot) => {
         let notes = [] as INote[]
 
@@ -40,7 +42,8 @@ export const useStoreNotes = defineStore("storeNotes", {
           }
           notes.push(note)
         })
-        this.notes = notes
+          this.notes = notes
+          this.notesLoaded = true
       })
     },
     async addNote(note: string) {
