@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useStoreNotes } from '@/stores/storeNotes'
-import { vAutoFocus } from '@/directives/vAutoFocus'
+import { vFocus } from '@/directives/vFocus'
 import { useWatchCharacters } from '@/use/useWatchCharacters'
 import { ref } from 'vue'
 
@@ -34,7 +34,7 @@ useWatchCharacters(loveNoteable, 50)
       type="text"
       placeholder="Do you love Noteable?"
       v-model="loveNoteable"
-      v-autofocus
+      v-focus
     />
   </div>
 </template>

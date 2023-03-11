@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { vAutoFocus } from '@/directives/vAutoFocus'
+import { vFocus } from '@/directives/vFocus'
 
 /*
-props 
+props
 */
 const props = defineProps({
   modelValue: {
@@ -53,7 +53,7 @@ defineExpose({
     <div class="field">
       <div class="control">
         <textarea
-          v-text="modelValue"
+          :value="modelValue"
           @input="
             emit(
               'update:modelValue',
@@ -64,7 +64,7 @@ defineExpose({
           ref="textareaRef"
           :placeholder="props.placeholder"
           maxlength="100"
-          v-autofocus
+          v-focus
         ></textarea>
       </div>
     </div>
