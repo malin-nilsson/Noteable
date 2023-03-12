@@ -52,6 +52,9 @@ onClickOutside(
         :class="{ 'is-active': showMobileNav }"
         ref="navbarMenuRef"
       >
+        <div class="navbar-start">
+          <button class="button is-small is-link mt-3 ml-3">Log out</button>
+        </div>
         <div class="navbar-end">
           <RouterLink
             to="/"
