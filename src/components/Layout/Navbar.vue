@@ -22,7 +22,7 @@ onClickOutside(
 
 <template>
   <nav
-    class="navbar is-link-light"
+    class="navbar is-link"
     role="navigation"
     aria-label="main navigation"
   >
@@ -53,7 +53,7 @@ onClickOutside(
         ref="navbarMenuRef"
       >
         <div class="navbar-start">
-          <button class="button is-small is-link mt-3 ml-3">Log out</button>
+          <button class="button is-small is-light mt-3 ml-3">Log out</button>
         </div>
         <div class="navbar-end">
           <RouterLink

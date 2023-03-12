@@ -73,7 +73,7 @@ const onSubmit = () => {
           </div>
           <div class="field is-grouped is-grouped-right">
             <p class="control">
-              <button class="button is-primary">{{ formTitle }}</button>
+              <button class="button is-link">{{ formTitle }}</button>
             </p>
           </div>
         </form>
