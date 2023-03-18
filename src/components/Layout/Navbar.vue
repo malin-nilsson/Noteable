@@ -25,7 +25,7 @@ onClickOutside(
 
 const logout = () => {
   showMobileNav.value = false
-  storeAuth.logoutUser
+  storeAuth.logoutUser()
 }
 </script>
 

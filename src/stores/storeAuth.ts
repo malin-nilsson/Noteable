@@ -2,11 +2,12 @@ import { defineStore } from "pinia"
 // @ts-ignore
 import { auth } from '@/firebase/config.js'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
+import router from "@/router";
 
 interface IUser {
   email: string | null
   password: string | null
-  id: string
+  id?: string
 }
 
 export const useStoreAuth = defineStore("storeAuth", {
@@ -21,14 +22,16 @@ export const useStoreAuth = defineStore("storeAuth", {
         if (user) {
         this.user.id = user.uid
         this.user.email = user.email
-        console.log(this.user)
+        router.push("/")
+
         } else {
           this.user = {} as IUser
+          router.replace("/auth")
         }
       })
     },
-   registerUser(credentials: any) {
-    createUserWithEmailAndPassword(auth, credentials.email, credentials.password)
+   registerUser(credentials: IUser) {
+    createUserWithEmailAndPassword(auth, credentials.email as string, credentials.password as string)
     .then((userCredential) => {
     const user = userCredential.user
     // ...
@@ -38,8 +41,8 @@ export const useStoreAuth = defineStore("storeAuth", {
     // ..
   })
 },
-loginUser(credentials: any) {
-  signInWithEmailAndPassword(auth, credentials.email, credentials.password)
+loginUser(credentials: IUser) {
+  signInWithEmailAndPassword(auth, credentials.email as string, credentials.password as string)
   .then((userCredential) => {
     const user = userCredential.user
     // ...

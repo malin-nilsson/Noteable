@@ -85,7 +85,7 @@ const onSubmit = () => {
 </template>
 
 <style>
-.auth-form {
+.card.auth-form {
   max-width: 400px;
   margin: 0 auto;
 }
