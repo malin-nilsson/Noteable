@@ -18,7 +18,7 @@ interface INote {
   date: string
 }
 
-const notesCollectionRef = collection(db, "notes")
+const notesCollectionRef = collection(db, "users", "Y13WSKHBnVan8zJaAIZQKQjCMyz2", "notes")
 const notesCollectionQuery = query(notesCollectionRef, orderBy("date", "desc"))
 
 export const useStoreNotes = defineStore("storeNotes", {

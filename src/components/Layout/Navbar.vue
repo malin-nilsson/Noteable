@@ -65,7 +65,7 @@ const logout = () => {
           <button
             v-if="storeAuth.user.id"
             @click="logout"
-            class="button is-small is-light mt-3 ml-3"
+            class="button is-small is-lt-purple mt-3 ml-3"
           >
             Log out {{ storeAuth.user.email }}
           </button>
@@ -98,5 +98,11 @@ const logout = () => {
     left: 0;
     width: 100%;
   }
+}
+
+button.is-lt-purple {
+  background-color: #d6d6fa;
+  color: #000;
+  border: none;
 }
 </style>
