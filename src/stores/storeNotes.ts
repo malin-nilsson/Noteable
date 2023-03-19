@@ -11,6 +11,9 @@ import {
   query,
   orderBy,
   type Unsubscribe,
+  CollectionReference,
+  type DocumentData,
+  Query,
 } from "firebase/firestore"
 import { useStoreAuth } from "./storeAuth"
 
@@ -20,8 +23,8 @@ interface INote {
   date: string
 }
 
-let notesCollectionRef: any
-let notesCollectionQuery: any
+let notesCollectionRef: CollectionReference<DocumentData>
+let notesCollectionQuery: Query<DocumentData>
 let getNotesSnapshot: Unsubscribe
 
 export const useStoreNotes = defineStore("storeNotes", {
@@ -43,10 +46,10 @@ export const useStoreNotes = defineStore("storeNotes", {
     async getNotes() {
       this.notesLoaded = false
 
-      getNotesSnapshot = onSnapshot(notesCollectionQuery, (querySnapshot: any) => {
+      getNotesSnapshot = onSnapshot(notesCollectionQuery, (querySnapshot) => {
         let notes = [] as INote[]
 
-        querySnapshot.forEach((doc: any) => {
+        querySnapshot.forEach((doc) => {
           let note: INote = {
             id: doc.id,
             content: doc.data().content,
