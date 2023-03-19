@@ -55,6 +55,9 @@ export const useStoreNotes = defineStore("storeNotes", {
           this.notesLoaded = true
       })
     },
+    clearNotes() {
+      this.notes = []
+    },
     async addNote(note: string) {
       let currentDate = new Date().getTime()
       let date = currentDate.toString()

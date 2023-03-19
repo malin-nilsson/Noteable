@@ -32,18 +32,18 @@ export const useStoreAuth = defineStore("storeAuth", {
         } else {
           this.user = {} as IUser
           router.replace("/auth")
+          storeNotes.clearNotes()
         }
       })
     },
    registerUser(credentials: IUser) {
     createUserWithEmailAndPassword(auth, credentials.email as string, credentials.password as string)
     .then((userCredential) => {
-    const user = userCredential.user
-    // ...
+
   })
   .catch((error) => {
     console.log(error.message)
-    // ..
+
   })
 },
 loginUser(credentials: IUser) {
