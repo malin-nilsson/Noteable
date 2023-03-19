@@ -11,6 +11,7 @@ import {
   query,
   orderBy,
 } from "firebase/firestore"
+import { useStoreAuth } from "./storeAuth"
 
 interface INote {
   id: string
@@ -18,8 +19,8 @@ interface INote {
   date: string
 }
 
-const notesCollectionRef = collection(db, "users", "Y13WSKHBnVan8zJaAIZQKQjCMyz2", "notes")
-const notesCollectionQuery = query(notesCollectionRef, orderBy("date", "desc"))
+let notesCollectionRef: any
+let notesCollectionQuery: any
 
 export const useStoreNotes = defineStore("storeNotes", {
   state: () => {
@@ -29,12 +30,20 @@ export const useStoreNotes = defineStore("storeNotes", {
     };
   },
   actions: {
+    init() {
+      const storeAuth = useStoreAuth()
+
+      notesCollectionRef = collection(db, "users", storeAuth.user.id as string, "notes")
+      notesCollectionQuery = query(notesCollectionRef, orderBy("date", "desc"))
+      
+      this.getNotes()
+    },
     async getNotes() {
       this.notesLoaded = false
-      onSnapshot(notesCollectionQuery, (querySnapshot) => {
+      onSnapshot(notesCollectionQuery, (querySnapshot: any) => {
         let notes = [] as INote[]
 
-        querySnapshot.forEach((doc) => {
+        querySnapshot.forEach((doc: any) => {
           let note: INote = {
             id: doc.id,
             content: doc.data().content,

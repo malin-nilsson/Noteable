@@ -3,12 +3,14 @@ import { defineStore } from "pinia"
 import { auth } from '@/firebase/config.js'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
 import router from "@/router";
+import { useStoreNotes } from "./storeNotes";
 
 interface IUser {
   email: string | null
-  password: string | null
+  password: string
   id?: string
 }
+
 
 export const useStoreAuth = defineStore("storeAuth", {
   state: () => {
@@ -18,11 +20,14 @@ export const useStoreAuth = defineStore("storeAuth", {
   },
   actions: {
     init() {
+      const storeNotes = useStoreNotes()
+
       onAuthStateChanged(auth, (user) => {
         if (user) {
         this.user.id = user.uid
         this.user.email = user.email
         router.push("/")
+        storeNotes.init()
 
         } else {
           this.user = {} as IUser
