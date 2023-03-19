@@ -11,7 +11,6 @@ interface IUser {
   id?: string
 }
 
-
 export const useStoreAuth = defineStore("storeAuth", {
   state: () => {
    return {
@@ -49,8 +48,6 @@ export const useStoreAuth = defineStore("storeAuth", {
 loginUser(credentials: IUser) {
   signInWithEmailAndPassword(auth, credentials.email as string, credentials.password as string)
   .then((userCredential) => {
-    const user = userCredential.user
-    // ...
   })
   .catch((error) => {
     console.log(error.message)

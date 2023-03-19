@@ -7,7 +7,7 @@ const storeNotes = useStoreNotes()
 
 /*
   props
-  */
+*/
 const props = defineProps({
   modelValue: {
     type: Boolean,
@@ -21,12 +21,12 @@ const props = defineProps({
 
 /*
   emits
-  */
+*/
 const emit = defineEmits(['update:modelValue'])
 
 /*
   close modal 
-  */
+*/
 const closeModal = () => {
   emit('update:modelValue', false)
 }
@@ -37,7 +37,7 @@ onClickOutside(modalCardRef, closeModal)
 
 /*
   keyboard control
-  */
+*/
 
 const handleKeyboard = (e: KeyboardEvent) => {
   if (e.key === 'Escape') {

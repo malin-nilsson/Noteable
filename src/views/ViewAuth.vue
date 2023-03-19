@@ -5,7 +5,7 @@ import { useStoreAuth } from '@/stores/storeAuth'
 const storeAuth = useStoreAuth()
 
 /*
-    register / login
+  register / login
 */
 const register = ref(false)
 

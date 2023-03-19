@@ -8,13 +8,14 @@ import { useWatchCharacters } from '@/use/useWatchCharacters'
 const storeNotes = useStoreNotes()
 
 const newNote = ref('')
-const addEditNoteRef = ref<any>()
+const addEditNoteRef = ref()
 
 const addNote = () => {
   storeNotes.addNote(newNote.value)
   newNote.value = ''
   addEditNoteRef.value?.focusTextArea()
 }
+
 useWatchCharacters(newNote, 250)
 </script>
 
