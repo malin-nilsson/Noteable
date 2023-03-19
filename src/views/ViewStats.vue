@@ -29,12 +29,5 @@ useWatchCharacters(loveNoteable, 50)
         </tr>
       </tbody>
     </table>
-    <input
-      class="input"
-      type="text"
-      placeholder="Do you love Noteable?"
-      v-model="loveNoteable"
-      v-focus
-    />
   </div>
 </template>
