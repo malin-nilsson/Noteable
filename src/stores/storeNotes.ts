@@ -10,6 +10,7 @@ import {
   updateDoc,
   query,
   orderBy,
+  type Unsubscribe,
 } from "firebase/firestore"
 import { useStoreAuth } from "./storeAuth"
 
@@ -21,6 +22,7 @@ interface INote {
 
 let notesCollectionRef: any
 let notesCollectionQuery: any
+let getNotesSnapshot: Unsubscribe
 
 export const useStoreNotes = defineStore("storeNotes", {
   state: () => {
@@ -40,7 +42,8 @@ export const useStoreNotes = defineStore("storeNotes", {
     },
     async getNotes() {
       this.notesLoaded = false
-      onSnapshot(notesCollectionQuery, (querySnapshot: any) => {
+
+      getNotesSnapshot = onSnapshot(notesCollectionQuery, (querySnapshot: any) => {
         let notes = [] as INote[]
 
         querySnapshot.forEach((doc: any) => {
@@ -57,6 +60,9 @@ export const useStoreNotes = defineStore("storeNotes", {
     },
     clearNotes() {
       this.notes = []
+
+      // unsubcribe from any active listener
+      if (getNotesSnapshot) getNotesSnapshot()
     },
     async addNote(note: string) {
       let currentDate = new Date().getTime()
