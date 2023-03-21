@@ -22,7 +22,7 @@ Composition API & Script Setup\
 Pinia\
 TypeScript\
 Firebase\
-Bulma\
+Bulma
 
 ## Author
 - GitHub - [malin-nilsson](https://github.com/malin-nilsson)
