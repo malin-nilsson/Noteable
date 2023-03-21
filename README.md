@@ -1,46 +1,28 @@
-# noteable
+# Noteable 
+A notes app ✍️ built with Vue3, TypeScript, Pinia for state management and Firebase for storage and authentication. Users can log in and write, edit and delete notes and see stats on their notes. The main goal of this project was to practice Pinia and TypeScript.
 
-This template should help get you started developing with Vue 3 in Vite.
+Live site: https://noteable-vue.netlify.app
 
-## Recommended IDE Setup
+## Installation
+1. Clone the repo\
+`git clone https://github.com/malin-nilsson/Noteable`
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+2. Install npm packages\
+`npm i`
 
-## Type Support for `.vue` Imports in TS
+3. CD into repo\
+`cd noteable`
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+5. Run Vue \
+`npm run dev`
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+## Tools
+Vue3\
+Composition API & Script Setup\
+Pinia\
+TypeScript\
+Firebase\
+Bulma\
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+## Author
+- GitHub - [malin-nilsson](https://github.com/malin-nilsson)
