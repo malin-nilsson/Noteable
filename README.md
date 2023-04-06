@@ -1,7 +1,7 @@
 # Noteable 
 A notes app ✍️ I did with Vue3, TypeScript, Pinia for state management and Firebase for storage and authentication. Users can log in and write, edit and delete notes and see stats on their notes. The main goal of this project was to practice Pinia and TypeScript.
 
-Live url: https://noteable-vue.netlify.app
+Live url: https://noteable-vue.netlify.app/
 
 ## Installation
 1. Clone the repo\
